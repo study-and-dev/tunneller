@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="tunn" default="all">
+  
+  
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="compiler.excluded"/>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+  </patternset>
+  <!-- JDK definitions -->
+  
+  <property name="jdk.home.java_version_1.6.0" value="E:/Program_Files_2/j2dk1.6.0"/>
+  <path id="jdk.classpath.java_version_1.6.0">
+    <fileset dir="${jdk.home.java_version_1.6.0}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.java_version_1.6.0}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.java_version_1.6.0"/>
+  <!-- Project Libraries -->
+  <!-- Global Libraries -->
+  
+  <path id="library.clue.classpath">
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/CluePlugin.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/CWBC-DSKX-421.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/dom2.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/js15.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/PBShell-421.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/sax2.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/trax-api.jar"/>
+    <pathelement location="H:/docs_xp/My Programming/jbuilder/gala_project/cLUE/NetClue/Clue4.2/lib/waf0_5.jar"/>
+  </path>
+
+  <path id="library.jgraph5.3.classpath">
+    <pathelement location="E:/Program_Files_2/Libraries/jgraph_5.3/lib/jgraph.jar"/>
+  </path>
+
+  <path id="library.jfreechart.classpath">
+    <pathelement location="E:/Program_Files_2/Libraries/jfreechart-0.9.21/lib/gnujaxp.jar"/>
+    <pathelement location="E:/Program_Files_2/Libraries/jfreechart-0.9.21/lib/jcommon-0.9.6.jar"/>
+    <pathelement location="E:/Program_Files_2/Libraries/jfreechart-0.9.21/lib/junit.jar"/>
+    <pathelement location="E:/Program_Files_2/Libraries/jfreechart-0.9.21/lib/servlet.jar"/>
+    <pathelement location="E:/Program_Files_2/Libraries/jfreechart-0.9.21/jfreechart-0.9.21.jar"/>
+  </path>
+  <!-- Application Server Libraries -->
+
+  <path id="library.tomcat.classpath">
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/ant-launcher.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/ant.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/commons-collections-3.1.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/commons-dbcp-1.2.1.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/commons-el.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/commons-pool-1.2.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/jasper-compiler.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/jasper-runtime.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/jsp-api.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/naming-common.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/naming-factory.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/naming-java.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/naming-resources.jar"/>
+    <pathelement location="E:/Program_Files_2/Apache Group/apachefriends/xampp/tomcat/common/lib/servlet-api.jar"/>
+  </path>
+
+  <import file="${basedir}/module_tunn.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.tunn" description="cleanup all"/>
+
+  <target name="all" depends="init, clean, compile.module.tunn" description="build all"/>
+</project>

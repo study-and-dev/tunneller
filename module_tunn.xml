@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_tunn" default="compile.module.tunn">
+  <dirname property="module.tunn.basedir" file="${ant.file.module_tunn}"/>
+  
+  <property name="module.jdk.home.tunn" value="${project.jdk.home}"/>
+  <property name="module.jdk.classpath.tunn" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.tunn" value="${compiler.args}"/>
+  
+  <property name="tunn.output.dir" value="${module.tunn.basedir}/classes"/>
+  <property name="tunn.testoutput.dir" value="${module.tunn.basedir}/classes"/>
+  
+  <path id="tunn.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="tunn.module.classpath">
+    <path refid="${module.jdk.classpath.tunn}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.tunn"/>
+  
+  <patternset id="excluded.from.compilation.tunn">
+    <patternset refid="excluded.from.module.tunn"/>
+    <patternset refid="compiler.excluded"/>
+  </patternset>
+  
+  <path id="tunn.module.sourcepath">
+    <dirset dir="${module.tunn.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.tunn" depends="compile.module.tunn.production,compile.module.tunn.tests" description="compile module tunn"/>
+  
+  <target name="compile.module.tunn.production" description="compile module tunn production classes">
+    <mkdir dir="${tunn.output.dir}"/>
+    <javac destdir="${tunn.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memoryMaximumSize="${compiler.max.memory}" fork="true" executable="${module.jdk.home.tunn}/bin/javac">
+      <compilerarg line="${compiler.args.tunn}"/>
+      <bootclasspath refid="tunn.module.bootclasspath"/>
+      <classpath refid="tunn.module.classpath"/>
+      <src refid="tunn.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.tunn"/>
+    </javac>
+    <copy todir="${tunn.output.dir}">
+      <fileset dir="${module.tunn.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.tunn"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.tunn.tests" depends="compile.module.tunn.production" description="compile module tunn test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.tunn" description="cleanup module">
+    <delete dir="${tunn.output.dir}"/>
+    <delete dir="${tunn.testoutput.dir}"/>
+  </target>
+
+
+    <target name="makejar" depends="compile.module.tunn">
+        <jar jarfile="${module.tunn.basedir}/tunn.jar">
+            <manifest>
+                <attribute name="Main-Class" value="study.tunnel.UIForm" />
+            </manifest>
+            <fileset dir="${tunn.output.dir}"/> 
+        </jar>
+    </target>
+</project>
